@@ -3,10 +3,17 @@
  *
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
-
 module.exports = {
   plugins: [
     `gatsby-plugin-typescript`,
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'posts',
+        path: `${__dirname}/posts`,
+      },
+    },
+    `gatsby-transformer-remark`,    
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
