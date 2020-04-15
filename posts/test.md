@@ -1,7 +1,5 @@
 ---
-title: 테스트
+title: Test
 ---
-    
-# 테스트
 
-마크다운 테스트
+Test of Markdown 

@@ -19,9 +19,11 @@ module.exports = async ({ actions: { createPage }, graphql }) => {
   if (errors) {
     throw errors;
   }
+
+  
   
   data.allMarkdownRemark.edges.forEach(({ node }) => {
-    createPage({
+    const page = createPage({
       path: node.frontmatter.title,
       context: {
         html: node.html,

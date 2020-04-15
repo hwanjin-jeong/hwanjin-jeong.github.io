@@ -1,18 +1,24 @@
 import React from 'react';
 
 interface PostTemplateProps {
-  data: {
-    markdownRemark: Post
+  pageContext: {
+    title: string,
+    html: string
   }
 }
 
-const PostTemplate = (props: PostTemplateProps) => (
-  <code>
-    <pre>
-      {JSON.stringify(props, null, 4)}
-    </pre>
-  </code>
-)
+const PostTemplate = (props: PostTemplateProps) => {
+  const { title, html } = props.pageContext;
+  return (
+    <code>
+      <pre>
+        <h2>{title}</h2>
+        <hr />
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </pre>
+    </code>
+  )
+}
 
 
 PostTemplate.displayName = 'PostTemplate';
