@@ -2,29 +2,30 @@ const {resolve} = require('path')
 
 module.exports = async ({ actions: { createPage }, graphql }) => {
   const { data, errors } = await graphql(`
-            {
-                allMarkdownRemark {
-                    edges {
-                        node {
-                            html
-                            frontmatter {
-                                title
-                            }
-                        }
-                    }
-                }
-            }
+{
+  allMarkdownRemark {
+    edges {
+      node {
+        html
+        frontmatter {
+          title
+        }
+        fields {
+          slug
+        }
+      }
+    }
+  }
+}
   `);
 
   if (errors) {
     throw errors;
   }
 
-  
-  
   data.allMarkdownRemark.edges.forEach(({ node }) => {
     const page = createPage({
-      path: node.frontmatter.title,
+      path: node.fields.slug,
       context: {
         html: node.html,
         title: node.frontmatter.title,
